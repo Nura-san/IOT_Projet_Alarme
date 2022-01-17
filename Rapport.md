@@ -6,12 +6,6 @@ Dans le cadre du module Internet Of Thing (IOT) nous avons du réaliser un proje
 
 ## Organisation du projet
 
-### Architecture réseau
-définir l’architecture globale du réseau de sirènes d’alarme,
-
-### Sécurité globale (clé de chiffrage)
-définir la sécurité globale (clé de chiffrage),
-
 ### Architecture matérielle
 définir l’architecture matérielle de l’objet,
 
@@ -46,17 +40,23 @@ estimer le coût de certification ETSI du produit, le coût de certification LoR
 https://www.etsi.org
 https://lora-alliance.org/lorawan-certification/
 
-### Implémentation du logiciel embarqué
-proposer une implémentation du logiciel embarqué de l’objet défini.
-
-### Format LPP des messages
-définir le format LPP des messages LoRaWAN uplink et downlink,
-
 ### Logiciel embarqué de l'objet sirène
 définir le logiciel embarqué de l’objet sirène.
 
+### Implémentation du logiciel embarqué
+proposer une implémentation du logiciel embarqué de l’objet défini.
+
 ### Métriques du logiciel embarqué
 donner les métriques logiciel du logiciel embarqué (nombre de lignes de code, taille du binaire du firmware ie le fichier .bin)
+
+### Architecture réseau
+définir l’architecture globale du réseau de sirènes d’alarme,
+
+### Sécurité globale (clé de chiffrage)
+définir la sécurité globale (clé de chiffrage),
+
+### Format LPP des messages
+définir le format LPP des messages LoRaWAN uplink et downlink,
 
 ### Changement de comportement de l'objet
 montrer les changements de comportement de l’objet en fonction des événements (normal, incident détecté, retour à la normal).
@@ -103,7 +103,7 @@ rechercher et analyser (avantages/inconvénients sous la forme d’une grille) d
 ### Solution pour localiser l'objet
 définir les solutions utilisables pour localiser l’objet sirène (à des fins d’inventaire)
     
-Récupérer les messages de températures envoyer par les cartes Lora: prendre une période de x minutes et compter le nombre de messages reçu.
+Triangularisation du message reçu par les bornes LoRa.
 
 ### Intégrations effectuées
 en option, montrer les intégrations effectuées (cayenne, influxdb …)
