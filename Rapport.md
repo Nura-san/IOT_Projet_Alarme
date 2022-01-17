@@ -65,6 +65,10 @@ montrer les changements de comportement de l’objet en fonction des événement
 ### Durée de vie de la batterie
 estimer la durée de vie de la batterie en classe A, en classe B et en classe C en utilisant un outil comme  https://www.elsys.se/en/battery-life-calculator/ 
 
+Classe C: 
+![image](https://user-images.githubusercontent.com/95240260/149814342-742e4284-521d-4476-b4bf-93b66ca6966c.png)
+
+
 Nous avons décidé d'utiliser notre alarme en classe C. Nous voulons que la durée de vie de la batterie soit la plus longue possible. De plus, nous n'avons pas besoin d'envoyer de message à l'alarme, nous souhaitons uniquement envoyer un message à l'alarme lorsque celle-ci est déclanché pour éteindre le buzzer.
 
 ### Analyse du cycle de vie du produit
