@@ -1,15 +1,15 @@
 # IOT_Projet_Alarme
 Projet d'IOT IESE5, création d'une alarme LoRaWan.
 
-## Introduction
+# Introduction
 Dans le cadre du module Internet Of Thing (IOT) nous avons du réaliser un projet se basant sur une connexion LoRaWAN pour la sécurité des biens et des personnes.
 
-## Organisation du projet
+# Organisation du projet
 
-### Architecture matérielle
+## Architecture matérielle
 - 2 Piles de 1.5V et 2900 mAh 
 
-### Coût de BOM du produit 
+## Coût de BOM du produit 
 Pour calculer le coût de la BOM de notre produit, nous avons besoin de lister tous les éléments composants notre produit. Pour la création d'un produit, nous avons besoin:
 - 1 carte LoRa-E5 en kit contenant une antenne, une batterie de 3.3V pour 21.90 dollars
 - 1 capteur DHT22 (température et humidité) pour 7.60 dollars
@@ -35,37 +35,37 @@ Références :
 - Piles : https://www.manomano.fr/p/emmerich-industrial-lr06-pile-lr6-aa-alcalines-2900-mah-50-pcs-x858911-10016815?model_id=10016815
 
 
-### Coût des certifications
+## Coût des certifications
 estimer le coût de certification ETSI du produit, le coût de certification LoRa Alliance du produit ...
 https://www.etsi.org
 https://lora-alliance.org/lorawan-certification/
 
-### Logiciel embarqué de l'objet sirène
+## Logiciel embarqué de l'objet sirène
 définir le logiciel embarqué de l’objet sirène.
 
-### Implémentation du logiciel embarqué
+## Implémentation du logiciel embarqué
 ![image](https://user-images.githubusercontent.com/95240260/149816411-1660ffd6-fafe-4919-ba3b-6ef624a9c384.png)
 
-### Métriques du logiciel embarqué
+## Métriques du logiciel embarqué
 donner les métriques logiciel du logiciel embarqué (nombre de lignes de code, taille du binaire du firmware ie le fichier .bin)
 
 Notre code compte environs 400 lignes.
 
-### Architecture réseau
+## Architecture réseau
 définir l’architecture globale du réseau de sirènes d’alarme,
 
-### Sécurité globale (clé de chiffrage)
+## Sécurité globale (clé de chiffrage)
 définir la sécurité globale (clé de chiffrage),
 
-### Format LPP des messages
+## Format LPP des messages
 définir le format LPP des messages LoRaWAN uplink et downlink,
 
-### Changement de comportement de l'objet
+## Changement de comportement de l'objet
 montrer les changements de comportement de l’objet en fonction des événements (normal, incident détecté, retour à la normal).
 Les messages downlink en provenance du récepteur seront émulés par des messages downlink émis par le network serveur (TTN ou CampusIoT).
 Prévoir de montrer la trace console de l’objet pendant la démonstration.
 
-### Durée de vie de la batterie
+## Durée de vie de la batterie
 Spreading factor SP7: 
 ![image](https://user-images.githubusercontent.com/95240260/149814342-742e4284-521d-4476-b4bf-93b66ca6966c.png)
 
@@ -78,7 +78,7 @@ Spreading factor SP12:
 Nous avons décidé d'utiliser notre alarme en classe C. Nous voulons que la durée de vie de la batterie soit la plus longue possible. De plus, nous n'avons pas besoin d'envoyer de message à l'alarme, nous souhaitons uniquement envoyer un message à l'alarme lorsque celle-ci est déclanché pour éteindre le buzzer.
 Avec cette classe, nous pouvons donc atteindre une durée de vie de plus de 8 ans ce qui est acceptable pour notre alarme.
 
-### Analyse du cycle de vie du produit
+## Analyse du cycle de vie du produit
 Naissance:
 - Extraction des matières première => Polution des sols + coût énergétique de l'extraction
 - Fabrication: transformation, assemblage => Coût en énergie + Main d'oeuvre
@@ -90,7 +90,7 @@ Vie:
 Mort:
 - Fin de vie => Recyclage de certain matériaux
 
-### Avantage/inconvénients des produits concurrents
+## Avantage/inconvénients des produits concurrents
 Notre objet:
 ![image](https://user-images.githubusercontent.com/95240260/149820720-83e8b41f-1e96-473f-8058-fa0a66408d6a.png)
 ![image](https://user-images.githubusercontent.com/95240260/149820348-a62c2ff8-4323-4860-a4b0-fd936ff70066.png)
@@ -111,15 +111,15 @@ Ineo-sense ACS Switch Buzz®:
 ![image](https://user-images.githubusercontent.com/95240260/149819941-102da9ef-4b10-4fee-80ef-4ad98dc2c36f.png)
 ![image](https://user-images.githubusercontent.com/95240260/149820421-00a5fa13-d8b7-4ea5-b317-88df4afe99e3.png)
 
-### Solution pour localiser l'objet
+## Solution pour localiser l'objet
 définir les solutions utilisables pour localiser l’objet sirène (à des fins d’inventaire)
     
 Triangularisation du message reçu par les bornes LoRa.
 
-### Intégrations effectuées
+## Intégrations effectuées
 Affichage des valeurs des capteurs sur cayenne.
 
-## Conclusion
+# Conclusion
 
 
 
