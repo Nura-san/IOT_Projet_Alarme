@@ -92,6 +92,7 @@ Mort:
 
 ### Avantage/inconvénients des produits concurrents
 Notre objet:
+![image](https://user-images.githubusercontent.com/95240260/149820720-83e8b41f-1e96-473f-8058-fa0a66408d6a.png)
 ![image](https://user-images.githubusercontent.com/95240260/149820348-a62c2ff8-4323-4860-a4b0-fd936ff70066.png)
 
 SmartVOX:
