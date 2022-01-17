@@ -65,14 +65,29 @@ montrer les changements de comportement de l’objet en fonction des événement
 ### Durée de vie de la batterie
 estimer la durée de vie de la batterie en classe A, en classe B et en classe C en utilisant un outil comme  https://www.elsys.se/en/battery-life-calculator/ 
 
-Classe C: 
+Spreading factor SP7: 
 ![image](https://user-images.githubusercontent.com/95240260/149814342-742e4284-521d-4476-b4bf-93b66ca6966c.png)
 
+Spreading factor SP9:
+![image](https://user-images.githubusercontent.com/95240260/149814483-8882b934-26a7-4058-b4d6-fffba9ab2c40.png)
+
+Spreading factor SP12:
+![image](https://user-images.githubusercontent.com/95240260/149814533-9eed5746-0aa0-415e-9479-9f78574d555e.png)
 
 Nous avons décidé d'utiliser notre alarme en classe C. Nous voulons que la durée de vie de la batterie soit la plus longue possible. De plus, nous n'avons pas besoin d'envoyer de message à l'alarme, nous souhaitons uniquement envoyer un message à l'alarme lorsque celle-ci est déclanché pour éteindre le buzzer.
+Avec cette classe, nous pouvons donc atteindre une durée de vie de plus de 8 ans ce qui est acceptable pour notre alarme.
 
 ### Analyse du cycle de vie du produit
-réaliser une analyse (briève) du cycle de vie du produit (ACV)
+Naissance:
+- Extraction des matières première => Polution des sols + coût énergétique de l'extraction
+- Fabrication: transformation, assemblage => Coût en énergie + Main d'oeuvre
+- Transport: Fabrication des pièces en chine => Carburants
+
+Vie:
+- Utilisation => Changement des piles + coût énergétique des gateways pour la communication
+
+Mort:
+- Fin de vie => Recyclage de certain matériaux
 
 ### Avantage/inconvénients des produits concurrents
 rechercher et analyser (avantages/inconvénients sous la forme d’une grille) des produits concurrents
