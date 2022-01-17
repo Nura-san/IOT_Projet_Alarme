@@ -98,12 +98,15 @@ SmartVOX:
 ![RAC-SMARTVOX-1--pi-hi500-li500](https://user-images.githubusercontent.com/95240260/149818151-417a6de1-8d8c-418b-9250-1f97fe0cd0fa.png)
 ![image](https://user-images.githubusercontent.com/95240260/149820369-8fb98e45-8031-4319-ad96-2e16c0033ad0.png)
 
+R602A:
 ![image](https://user-images.githubusercontent.com/95240260/149818785-3375fda7-298e-4d37-b281-52c862b51168.png)
 ![image](https://user-images.githubusercontent.com/95240260/149820307-9dff00b6-dae0-4c9b-9dce-ff02e667177f.png)
 
+MClimate:
 ![image](https://user-images.githubusercontent.com/95240260/149819220-10144dd1-df6f-475f-9864-91b3df395062.png)
 ![image](https://user-images.githubusercontent.com/95240260/149820392-1d6723fc-307d-4060-bbdc-b23b4a8431db.png)
 
+Ineo-sense ACS Switch Buzz®:
 ![image](https://user-images.githubusercontent.com/95240260/149819941-102da9ef-4b10-4fee-80ef-4ad98dc2c36f.png)
 ![image](https://user-images.githubusercontent.com/95240260/149820421-00a5fa13-d8b7-4ea5-b317-88df4afe99e3.png)
 
