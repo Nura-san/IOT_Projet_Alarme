@@ -91,33 +91,21 @@ Mort:
 - Fin de vie => Recyclage de certain matériaux
 
 ### Avantage/inconvénients des produits concurrents
-rechercher et analyser (avantages/inconvénients sous la forme d’une grille) des produits concurrents
-    https://www.aet.fr/produit/avertisseur-vocal-connecte-126-db-radio-lora-xpr901111.html  
-    
-    SmartVOX® diffuse, avec une très haute qualité sonore, des sons et messages vocaux pré-enregistrés personnalisables
+Notre objet:
+![image](https://user-images.githubusercontent.com/95240260/149820348-a62c2ff8-4323-4860-a4b0-fd936ff70066.png)
 
-    • Très grande couverture sonore : jusqu'à 126 dB (A) à 1 m (réglable)
-    • Communication sans fil longue distance ( jusqu'à 1,2 km)
-    • Secouru par batterie intégrée
-    • Scénarios d'alerte 100% personnalisables
-    • Extrêmement simple à installer et utiliser
-    • Disponible avec un feu flash (en option)
-    
-    https://iqflow.io/products/r602a-lorawan-wireless-siren
-    
-    Wireless Range Of 10 Km
-    LoRaWAN™ Class A Compatible
-    Frequency Hopping Spread Spectrum (FHSS)
-    Improved Interference Immunity
-    Improved Power Management For Longer Battery Life
-    Encrypt-RF™ Security (Diffie-Hellman Key Exchange + AES-128 CBC For Sensor Data Messages)
-    Battery Life*2:
-    ⁻ 5 Years
-     (Conditions: Ambient Temperature 25 °C, 20 Triggers/Day, Txpower = 20dBm, LoRa Spreading Factor SF = 10)
-    Over-The-Air Updates (Future)
-    Third-Party Online Wireless Sensor Monitoring And Notification System To Configure Sensors, View Data And Set Alerts Via SMS Text And Email (Optional)
-    Available Third-Party Platform: Actility/ThingPark, TTN, MyDevices/Cayenne
-    Prix = 179 dollars
+SmartVOX:
+![RAC-SMARTVOX-1--pi-hi500-li500](https://user-images.githubusercontent.com/95240260/149818151-417a6de1-8d8c-418b-9250-1f97fe0cd0fa.png)
+![image](https://user-images.githubusercontent.com/95240260/149820369-8fb98e45-8031-4319-ad96-2e16c0033ad0.png)
+
+![image](https://user-images.githubusercontent.com/95240260/149818785-3375fda7-298e-4d37-b281-52c862b51168.png)
+![image](https://user-images.githubusercontent.com/95240260/149820307-9dff00b6-dae0-4c9b-9dce-ff02e667177f.png)
+
+![image](https://user-images.githubusercontent.com/95240260/149819220-10144dd1-df6f-475f-9864-91b3df395062.png)
+![image](https://user-images.githubusercontent.com/95240260/149820392-1d6723fc-307d-4060-bbdc-b23b4a8431db.png)
+
+![image](https://user-images.githubusercontent.com/95240260/149819941-102da9ef-4b10-4fee-80ef-4ad98dc2c36f.png)
+![image](https://user-images.githubusercontent.com/95240260/149820421-00a5fa13-d8b7-4ea5-b317-88df4afe99e3.png)
 
 ### Solution pour localiser l'objet
 définir les solutions utilisables pour localiser l’objet sirène (à des fins d’inventaire)
