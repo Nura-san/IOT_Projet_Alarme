@@ -7,11 +7,22 @@ Dans le cadre du module Internet Of Thing (IOT) nous avons du réaliser un proje
 # Organisation du projet
 
 ## Architecture matérielle
-- 2 Piles de 1.5V et 2900 mAh 
+![image](https://user-images.githubusercontent.com/95240260/149894063-2e02e975-fa58-4515-8b38-b3df7deee33d.png)
+
+Notre alarme est consituée:
+- 1 carte LoRa-E5,
+- 1 antenne,
+- 1 boîte à piles,
+- 2 Piles de 1.5V et 2900 mAh,
+- 1 capteur DHT22 pour la température et l'humidité,
+- 1 capteur flamme,
+- 1 buzzer pour le son de l'alarme,
+- 1 bouton pour déclancher l'alarme,
+- 10 pins pour relier les capteurs à la cartes.
 
 ## Coût de BOM du produit 
 Pour calculer le coût de la BOM de notre produit, nous avons besoin de lister tous les éléments composants notre produit. Pour la création d'un produit, nous avons besoin:
-- 1 carte LoRa-E5 en kit contenant une antenne, une batterie de 3.3V pour 21.90 dollars
+- 1 carte LoRa-E5 en kit contenant une antenne, une boite pour piles de 3.3V pour 21.90 dollars
 - 1 capteur DHT22 (température et humidité) pour 7.60 dollars
 - 1 capteur de flamme pour 3.63 dollars
 - 1 buzzer pour 1.50 dollars
@@ -41,10 +52,53 @@ https://www.etsi.org
 https://lora-alliance.org/lorawan-certification/
 
 ## Logiciel embarqué de l'objet sirène
-définir le logiciel embarqué de l’objet sirène.
+![image](https://user-images.githubusercontent.com/95240260/149816411-1660ffd6-fafe-4919-ba3b-6ef624a9c384.png)
 
 ## Implémentation du logiciel embarqué
-![image](https://user-images.githubusercontent.com/95240260/149816411-1660ffd6-fafe-4919-ba3b-6ef624a9c384.png)
+Initialisation :
+- Delay des threads
+- Calibration du capteur flamme
+- Calibration du capteur DHT22
+- Connexion à cayenne via LoRa
+- Définition des GPIOs :
+- -Capteurs flamme et DHT22
+- -Bouton user_button et panique_button
+- -Buzzer et LEDs
+
+Variables globales :
+- Variable des données :
+- -Températures 
+- -Humidité
+- -Flamme
+- Flags :
+- -Alarme
+- -LED_mode
+
+Threads :
+- fire_sensor
+- DHT22_sensor
+- alarme
+- led
+- LoRa
+
+Interruption :
+- user_button
+- panique_button
+
+Exemple d'utilisation:
+
+Initialisation des composants :
+- pin_user_button = GPIO_PIN(1,13);
+- gpio_init_int (pin_user_button, GPIO_IN_PU, GPIO_RISING , user_button_interrupt,(void*)0);
+
+Création des threads :
+- thread_led_pid = thread_create(thread_led_stack, sizeof(thread_led_stack), THREAD_PRIORITY_MAIN - 1,0, thread_led, NULL, "thread_led");
+
+Fonction d’interruption des boutons :
+- static void user_button_interrupt(void *arg){
+-     (void)arg;
+-      Alarme = 0;
+-  }
 
 ## Métriques du logiciel embarqué
 donner les métriques logiciel du logiciel embarqué (nombre de lignes de code, taille du binaire du firmware ie le fichier .bin)
@@ -118,6 +172,7 @@ Triangularisation du message reçu par les bornes LoRa.
 
 ## Intégrations effectuées
 Affichage des valeurs des capteurs sur cayenne.
+![image](https://user-images.githubusercontent.com/95240260/149893927-6cf6a3f8-5a40-4d06-b73e-20aff2f3b018.png)
 
 # Conclusion
 
