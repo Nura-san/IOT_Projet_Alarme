@@ -47,12 +47,11 @@ Références :
 
 
 ## Coût des certifications
-estimer le coût de certification ETSI du produit, le coût de certification LoRa Alliance du produit ...
 https://www.etsi.org
 https://lora-alliance.org/lorawan-certification/
 
 ## Logiciel embarqué de l'objet sirène
-![image](https://user-images.githubusercontent.com/95240260/149816411-1660ffd6-fafe-4919-ba3b-6ef624a9c384.png)
+![image](https://user-images.githubusercontent.com/95240260/149896280-4887042d-da6d-4000-a3d2-f997cd3d59cb.png)
 
 ## Implémentation du logiciel embarqué
 Initialisation :
@@ -88,36 +87,53 @@ Interruption :
 Exemple d'utilisation:
 
 Initialisation des composants :
-- pin_user_button = GPIO_PIN(1,13);
-- gpio_init_int (pin_user_button, GPIO_IN_PU, GPIO_RISING , user_button_interrupt,(void*)0);
+pin_user_button = GPIO_PIN(1,13);
+gpio_init_int (pin_user_button, GPIO_IN_PU, GPIO_RISING , user_button_interrupt,(void*)0);
 
 Création des threads :
-- thread_led_pid = thread_create(thread_led_stack, sizeof(thread_led_stack), THREAD_PRIORITY_MAIN - 1,0, thread_led, NULL, "thread_led");
+thread_led_pid = thread_create(thread_led_stack, sizeof(thread_led_stack), THREAD_PRIORITY_MAIN - 1,0, thread_led, NULL, "thread_led");
 
 Fonction d’interruption des boutons :
-- static void user_button_interrupt(void *arg){
--     (void)arg;
--      Alarme = 0;
--  }
+static void user_button_interrupt(void *arg){
+    (void)arg;
+    Alarme = 0;
+}
 
 ## Métriques du logiciel embarqué
-donner les métriques logiciel du logiciel embarqué (nombre de lignes de code, taille du binaire du firmware ie le fichier .bin)
-
 Notre code compte environs 400 lignes.
+Taille du fichier firmware (.bin) : 31 Mbytes. Ce fichier qui peut être optimisé en modifiant les includes. 
+Pour l'instant, pour gérer les capteurs, nous avons includes des gros fichiers avec de nombreuses possibilités qui dans notre cas ne sont pas utiles.
 
 ## Architecture réseau
 définir l’architecture globale du réseau de sirènes d’alarme,
 
-## Sécurité globale (clé de chiffrage)
-définir la sécurité globale (clé de chiffrage),
-
 ## Format LPP des messages
 définir le format LPP des messages LoRaWAN uplink et downlink,
 
+## Sécurité globale (clé de chiffrage)
+Nous n'avons pas eu le temps d'implémenter de chiffrage pour nos données.
+
 ## Changement de comportement de l'objet
-montrer les changements de comportement de l’objet en fonction des événements (normal, incident détecté, retour à la normal).
-Les messages downlink en provenance du récepteur seront émulés par des messages downlink émis par le network serveur (TTN ou CampusIoT).
-Prévoir de montrer la trace console de l’objet pendant la démonstration.
+Notre alarme envoie des données sur cayenne via LoRa toutes les 10 minutes:
+- La température,
+- Le taux d'humidité,
+- La detection d'une flamme ou non,
+- L'alarme est activé ou non.
+
+Notre alarme est sensible à plusisuers facteurs:
+- Pression sur le panique bouton,
+- Detection d'une flamme,
+- Température trop élevé ou trop faible,
+- Changement trop brutale de température,
+- Humidité trop élevé ou trop faible,
+- Changement trop brutale de l'humidié.
+
+Lorsque l'alarme est activé par l'un des facteurs précédent, celle-ci envoie des messages LoRa pour indiquer que l'alarme vient de s'activé.
+Pour déactiver l'alarme, il faut appuyer sur le bouton de la carte LoRa pour indiquer que tout est revenue dans l'ordre.
+
+Logs: 
+![image](https://user-images.githubusercontent.com/95240260/149896839-87c61edb-2d7a-4073-a1b7-aa62b8a8c65f.png)
+![image](https://user-images.githubusercontent.com/95240260/149896902-519fdd2b-c3c6-4851-88ba-74e3b45db3a6.png)
 
 ## Durée de vie de la batterie
 Spreading factor SP7: 
@@ -166,8 +182,6 @@ Ineo-sense ACS Switch Buzz®:
 ![image](https://user-images.githubusercontent.com/95240260/149820421-00a5fa13-d8b7-4ea5-b317-88df4afe99e3.png)
 
 ## Solution pour localiser l'objet
-définir les solutions utilisables pour localiser l’objet sirène (à des fins d’inventaire)
-    
 Triangularisation du message reçu par les bornes LoRa.
 
 ## Intégrations effectuées
