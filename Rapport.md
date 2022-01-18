@@ -190,7 +190,7 @@ Affichage des valeurs des capteurs sur cayenne.
 
 # Conclusion
 
-
+Pour conclure, ce projet a été très enrichissant et nous avons pu apprendre à utiliser RiotOS et la communication LoRa. Nous avons au total travaillé 12h sur place et environ 30h sur notre temps personnel.
 
 
 
