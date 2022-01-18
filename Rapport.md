@@ -26,15 +26,15 @@ Pour calculer le coût de la BOM de notre produit, nous avons besoin de lister t
 - 1 capteur DHT22 (température et humidité) pour 7.60 dollars
 - 1 capteur de flamme pour 3.63 dollars
 - 1 buzzer pour 1.50 dollars
-- 1 bouton pour 1.50 dollars
+- 2*1 bouton pour 2 * 1.50 dollars
 - 10*1 pins pour 10 * 0.0848 dollars
 - 2*1 piles pour 2 * 0.0999 dollars
     
-On a donc un coût totale de 37.1778 dollars par kit d'alarme.
-Cela représente donc un coût de 185 889 dollars pour 5000 alarmes.
+On a donc un coût totale de 38.6778 dollars par kit d'alarme.
+Cela représente donc un coût de 193 389 dollars pour 5000 alarmes.
     
 On pourrait ajouter le coût de la boite en bois. Avec une découpe laser en bois, on peut imaginer un prix de matières premières de 5 dollars de bois et 5 euros de mains d'oeuvres par boite. Ce qui ajoute 10 dollars par boite et donc 50 000 dollars pour le montant totale.
-On arrive donc à un prix de 235 899 dollars pour 5000 alarmes avec leur boites en bois.
+On arrive donc à un prix de 243 399 dollars pour 5000 alarmes avec leur boites en bois.
 
 Références :
 - Kit LoRa-E5 : https://www.seeedstudio.com/LoRa-E5-Dev-Kit-p-4868.html
