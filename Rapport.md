@@ -105,10 +105,15 @@ Taille du fichier firmware (.bin) : 31 Mbytes. Ce fichier qui peut être optimis
 Pour l'instant, pour gérer les capteurs, nous avons includes des gros fichiers avec de nombreuses possibilités qui dans notre cas ne sont pas utiles.
 
 ## Architecture réseau
-définir l’architecture globale du réseau de sirènes d’alarme,
+Nous ne possédions qu'une seule carte donc la définition de l'architecture du "réseau" à proprement parlé n'est pas spécifiqie.
 
 ## Format LPP des messages
-définir le format LPP des messages LoRaWAN uplink et downlink,
+Données envoyé dans le buffer lpp : Total = 80 bits = 10 bytes
+
+cayenne_lpp_add_analog_input(&lpp, 0, data_fire/10);  = 8 + 8 bits = 16 bits
+cayenne_lpp_add_temperature(&lpp, 1, (float)data_temp/10); = 8 + 16 bits = 24 bits
+cayenne_lpp_add_relative_humidity(&lpp, 2, (float)data_hum/10); = 8 + 16 bits = 24 bits
+cayenne_lpp_add_digital_input(&lpp, 3, Alarme); = 8 + 8 bits = 16 bits               
 
 ## Sécurité globale (clé de chiffrage)
 Nous n'avons pas eu le temps d'implémenter de chiffrage pour nos données.
@@ -120,7 +125,7 @@ Notre alarme envoie des données sur cayenne via LoRa toutes les 10 minutes:
 - La detection d'une flamme ou non,
 - L'alarme est activé ou non.
 
-Notre alarme est sensible à plusisuers facteurs:
+Notre alarme est sensible à plusieurs facteurs:
 - Pression sur le panique bouton,
 - Detection d'une flamme,
 - Température trop élevé ou trop faible,
