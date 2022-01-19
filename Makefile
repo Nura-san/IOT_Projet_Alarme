@@ -4,9 +4,6 @@ APPLICATION = Projet_IOT_Alarme_Polytech
 #Référence de la carte Lora
 BOARD ?= lora-e5-dev
 
-#Timer pour delay etc.
-USEMODULE += xtimer
-
 #ADC pour capteur de flame/metal
 FEATURES_REQUIRED = periph_adc
 
@@ -19,6 +16,10 @@ USEMODULE += fmt
 
 #Capteur de Co2 air quality ccs811
 USEMODULE += ccs811
+
+#DO NOT REMOVE, NEED FOR LORA AUTO INIT
+USEMODULE += lm75a
+USEMODULE += sx126x_stm32wl
 
 # Default LoRa region is Europe and default band is 868MHz
 LORA_REGION ?= EU868

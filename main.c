@@ -6,8 +6,6 @@
 //Thread
 #include "thread.h"
 #include "msg.h"
-//Shell
-#include "shell.h"
 //Carte utilisée LoRaE5
 #include "board.h"
 //GPIO de la carte
@@ -34,8 +32,8 @@
 //Délais
 #define DELAY_FIRE          (60000LU * US_PER_MS) /* 1min */
 #define DELAY_DHT           (60000LU * US_PER_MS) /* 1min */
-#define DELAY_LED           (30000LU * US_PER_MS) /* 500 ms */
-#define DELAY_LED_clignote  (40LU * US_PER_MS) /* 40 ms */
+#define DELAY_LED           (30000LU * US_PER_MS) /*  30s */
+#define DELAY_LED_clignote  (50LU * US_PER_MS) /* 50 ms */
 #define DELAY_LoRa          (600000LU * US_PER_MS) /* 10mins*/
 #define DELAY_ALARME        (30000LU * US_PER_MS) /* 30s */
 
@@ -55,7 +53,7 @@ dht_t dev;
 int16_t data_temp, data_hum;
 char data_temp_s[10];
 char data_hum_s[10];
-int ref_temp = 23;
+int ref_temp = 24;
 int ref_hum = 50;
 
 //User boutton reset
@@ -69,9 +67,6 @@ gpio_t pin_buzzer;
 
 //LED
 gpio_t pin_LED;
-
-
-
 
 //Capteur CSS811
 
@@ -96,7 +91,7 @@ int LED_mode;
 //Synchronisation temps
 xtimer_ticks32_t last;
 
-//loramac descriptor
+loramac descriptor
 extern semtech_loramac_t loramac;
 //Cayenne LPP descriptor
 static cayenne_lpp_t lpp;
@@ -132,7 +127,7 @@ static void *thread_fire_sensor(void *arg)
             data_fire = sensorMin;
         } 
 
-        //printf("ADC_LINE(%u): %i\n", ADC_ID, data_fire);
+        printf("ADC_LINE(%u): %i\n", ADC_ID, data_fire);
 
         if (data_fire > sensor_seuil2_close ){
             //printf("**CLOSE FIRE** \n");
@@ -153,12 +148,15 @@ static void *thread_DHT22_sensor(void *arg)
 {   
     (void)arg;
     printf("DHT22_thread_launch\n");
-    int past_data_temp;
-    int past_data_hum;
+    if (dht_read(&dev, &data_temp, &data_hum) != DHT_OK) {
+        puts("Error reading values");
+    }
+    int past_data_temp = data_temp;
+    int past_data_hum = data_hum;
     while (1) {
         if (dht_read(&dev, &data_temp, &data_hum) != DHT_OK) {
-            puts("Error reading values");
-            continue;
+            //puts("Error reading values");
+            //continue;
         }
 
         size_t n = fmt_s16_dfp(data_temp_s, data_temp, -1);
@@ -167,15 +165,15 @@ static void *thread_DHT22_sensor(void *arg)
         data_hum_s[n] = '\0';
 
         //printf("DHT values - temp: %s%%°C - relative humidity: %s%%\n",data_temp_s, data_hum_s);
-        //printf("DHT values - temp: %d,%d°C - relative humidity: %d,%d\n",data_temp/10,data_temp%10, data_hum/10,data_hum%10);
+        printf("DHT values - temp: %d,%d°C - relative humidity: %d,%d\n",data_temp/10,data_temp%10, data_hum/10,data_hum%10);
 
         if (data_temp > ref_temp*10 && data_hum > ref_hum*10 ){
             Alarme = 1;
         }
-        else if (data_temp = past_data_temp + 30){
+        else if (data_temp > (past_data_temp + 50)){
             Alarme = 1;
         }
-        else if (data_hum = past_data_hum + 30){
+        else if (data_hum > (past_data_hum + 30)){
             Alarme = 1;
         }
 
@@ -236,12 +234,13 @@ static void *thread_LoRa(void *arg)
 {
     (void)arg;
     printf("LoRas_thread_launch\n");
+    xtimer_sleep(2);
     while (1) {
         /* Prepare cayenne lpp payload here */
-        cayenne_lpp_add_digital_output(&lpp, 0, (uint8_t)data_fire);
-        cayenne_lpp_add_temperature(&lpp, 0, (float)data_temp);
-        cayenne_lpp_add_relative_humidity(&lpp, 0, (float)data_hum);
-        cayenne_lpp_add_analog_output(&lpp, 0, (float)Alarme);
+        cayenne_lpp_add_analog_input(&lpp, 0, data_fire/10);
+        cayenne_lpp_add_temperature(&lpp, 1, (float)data_temp/10);
+        cayenne_lpp_add_relative_humidity(&lpp, 2, (float)data_hum/10);
+        cayenne_lpp_add_digital_input(&lpp, 3, Alarme);
 
         //printf("Sending LPP data\n");
 
@@ -271,9 +270,9 @@ int main(void)
     last = xtimer_now(); //Temps  
 
      /*----------Composants----------*/
-
+    printf("Initialisation des GPIO...\n");
     //User bouton PB13 = D0 / PB10 = D10
-    pin_user_button = GPIO_PIN(1,13);
+    pin_user_button = GPIO_PIN(1,10);
     gpio_init_int (pin_user_button, GPIO_IN_PU, GPIO_RISING , user_button_interrupt,(void*)0);
 
     //PANIQUE Bouton PA9 = D9
@@ -281,7 +280,7 @@ int main(void)
     gpio_init_int (pin_panique_buton, GPIO_IN_PU, GPIO_RISING , panique_button_interrupt,(void*)0);
     
     //Buzzer Analog : PB4 = A4 
-    pin_buzzer = GPIO_PIN(0,4);
+    pin_buzzer = GPIO_PIN(1,4);
     gpio_init(pin_buzzer,GPIO_OUT); 
     Alarme = 0;
 
@@ -291,10 +290,17 @@ int main(void)
     LED_mode = 2;
 
     //ADC PB3 = A3 (voir ADC_ID)
-    adc_init(ADC_LINE(ADC_ID));
+    printf("Initialisation ADC capteur flame...\t");
+    if (adc_init(ADC_LINE(ADC_ID)) == 0){
+        puts("[OK]");
+    }
+    else {
+        puts("[Failed]");
+        return 1;
+    }
 
     //DHT22 PA0 = D0 (voir "dht_params.h") 
-    printf("Initializing DHT sensor...\t");
+    printf("Initialisation capteur DHT...\t");
     if (dht_init(&dev, &dht_params[0]) == DHT_OK) {
         puts("[OK]\n");
     }
@@ -330,7 +336,7 @@ int main(void)
 
     /*------------------------------Création des threads------------------------------*/  
     thread_led_pid = thread_create(thread_led_stack, sizeof(thread_led_stack), THREAD_PRIORITY_MAIN - 1,0, thread_led, NULL, "thread_led");
-    xtimer_sleep(3);
+    xtimer_sleep(4);
     thread_fire_sensor_pid = thread_create(thread_fire_sensor_stack, sizeof(thread_fire_sensor_stack), THREAD_PRIORITY_MAIN - 1,0, thread_fire_sensor, NULL, "thread_fire_sensor");
     xtimer_msleep(20);
     thread_DHT22_sensor_pid = thread_create(thread_DHT22_sensor_stack, sizeof(thread_DHT22_sensor_stack), THREAD_PRIORITY_MAIN - 1,0, thread_DHT22_sensor, NULL, "thread_DHT22_sensor");
@@ -339,8 +345,6 @@ int main(void)
     xtimer_msleep(20);
     thread_LoRa_pid = thread_create(thread_LoRa_stack, sizeof(thread_LoRa_stack), THREAD_PRIORITY_MAIN - 1,0, thread_LoRa, NULL, "thread_LoRa");
 
-    /* Envois des données LoRa_data_sender function */
-    //LoRa_data_sender();
 
     while (1) {
         xtimer_msleep(10);
